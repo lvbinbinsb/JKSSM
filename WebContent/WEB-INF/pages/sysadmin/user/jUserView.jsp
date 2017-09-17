@@ -7,7 +7,7 @@
 
 <body>
 <form name="icform" method="post">
-      <input type="hidden" name="id" value="${id}"/>
+      <input type="hidden" name="id" value="${user.userId}"/>
 <div id="menubar">
 <div id="middleMenubar">
 <div id="innerMenubar">
@@ -33,16 +33,16 @@
 	        <tr>
 	            <td class="columnTitle">所在部门：</td>
 	            <td class="tableContent">
-	            	${dept.deptName }
+	            	${deptVo.deptName }
 	            </td>
 	        </tr>		
 	        <tr>
 	            <td class="columnTitle">用户名：</td>
-	            <td class="tableContent">${userName }</td>
+	            <td class="tableContent">${user.userName }</td>
 	        </tr>	
 	         <tr>
 	            <td class="columnTitle">状态：</td>
-	            <td class="tableContent">${state==0?'停用':'启用' }</td>
+	            <td class="tableContent">${user.state==0?'停用':'启用' }</td>
 	        </tr>		
 		</table>
 	</div>

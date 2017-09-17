@@ -1,9 +1,12 @@
 package cn.itcast.jk.mapper;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import cn.itcast.jk.domain.Dept;
 import cn.itcast.jk.domain.DeptExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
+import cn.itcast.jk.vo.DeptVo;
 
 public interface DeptMapper {
     int countByExample(DeptExample example);
@@ -33,4 +36,8 @@ public interface DeptMapper {
     
     //统计分页集合  分页
     List<Dept> findList(@Param("pageNo")int pageNo,@Param("pageSize")int pageSize);
+    
+    List<DeptVo> findDeptVo(@Param("pageNo")int pageNo,@Param("pageSize")int pageSize);
+    
+    DeptVo findDeptVoById(String id);
 }

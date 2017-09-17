@@ -7,7 +7,7 @@
 
 <body>
 <form name="icform" method="post">
-      <input type="hidden" name="id" value="${id}"/>
+      <input type="hidden" name="id" value="${dept.deptId}"/>
 <div id="menubar">
 <div id="middleMenubar">
 <div id="innerMenubar">
@@ -33,14 +33,14 @@
 	            <td class="columnTitle">上级部门：</td>
 	            <td class="tableContent">
 	          <!--  ${parent.deptName }  -->
-	            	 ${parent.deptName }  
+	            	 ${dept.parentName }  
 	            </td>
 	        </tr>		
 	        <tr>
 	            <td class="columnTitle">部门名称：</td>
 	            <td class="tableContent">
 	        <!--    ${model.deptName }  -->
-	            ${deptName }  
+	            ${dept.deptName }  
 	            </td>
 	        </tr>		
 		</table>

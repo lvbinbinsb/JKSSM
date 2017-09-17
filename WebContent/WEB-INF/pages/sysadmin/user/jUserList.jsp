@@ -5,10 +5,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title></title>
-	<script type="text/javascript" src="${ctx }/js/jquery-1.4.4.js"></script>
+	<script type="text/javascript" src="${ctx }/js/jquery-1.8.3.js"></script>
 	<script>
 	     function isOnlyChecked(){
-	    	 var checkBoxArray = document.getElementsByName('id');
+	    	 var checkBoxArray = document.getElementsByName('userId');
 				var count=0;
 				for(var index=0; index<checkBoxArray.length; index++) {
 					if (checkBoxArray[index].checked) {
@@ -24,7 +24,7 @@
 	     }
 	     function toView(){
 	    	 if(isOnlyChecked()){
-	    		 formSubmit('userAction_toview','_self');
+	    		 formSubmit('userAction_toview.action','_self');
 	    	 }else{
 	    		 alert("请先选择一项并且只能选择一项，再进行操作！");
 	    	 }
@@ -32,7 +32,7 @@
 	     //实现更新
 	     function toUpdate(){
 	    	 if(isOnlyChecked()){
-	    		 formSubmit('userAction_toupdate','_self');
+	    		 formSubmit('userAction_toupdate.action','_self');
 	    	 }else{
 	    		 alert("请先选择一项并且只能选择一项，再进行操作！");
 	    	 }
@@ -48,10 +48,10 @@
   <div id="navMenubar">
 <ul>
 <li id="view"><a href="javascript:toView()">查看</a></li>
-<li id="new"><a href="#" onclick="formSubmit('userAction_tocreate','_self');this.blur();">新增</a></li>
+<li id="new"><a href="#" onclick="formSubmit('userAction_tocreate.action','_self');this.blur();">新增</a></li>
 <li id="update"><a href="#" onclick="javascript:toUpdate()">修改</a></li>
-<li id="update"><a href="#" onclick="formSubmit('userAction_torole','_self');this.blur();">角色</a></li>
-<li id="delete"><a href="#" onclick="formSubmit('userAction_delete','_self');this.blur();">删除</a></li>
+<li id="update"><a href="#" onclick="formSubmit('userAction_torole.action','_self');this.blur();">角色</a></li>
+<li id="delete"><a href="#" onclick="formSubmit('userAction_delete.action','_self');this.blur();">删除</a></li>
 </ul>
   </div>
 </div>
@@ -81,14 +81,14 @@
 	</tr>
 	</thead>
 	<tbody class="tableBody" >
-${links}
+${page.links}
 	
-	<c:forEach items="${results}" var="o" varStatus="status">
+	<c:forEach items="${page.results}" var="user" varStatus="status">
 	<tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" align="left">
-		<td><input type="checkbox" name="id" value="${o.id}"/></td>
+		<td><input type="checkbox" name="userId" value="${user.userId}"/></td>
 		<td>${status.index+1}</td>
-		<td><a href="userAction_toview?id=${o.id}">${o.userName}</a></td>
-		<td>${o.state }</td>
+		<td><a href="userAction_toview?id=${user.userId}">${user.userName}</a></td>
+		<td>${user.state }</td>
 	</tr>
 	</c:forEach>
 	

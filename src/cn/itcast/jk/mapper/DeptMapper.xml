@@ -9,6 +9,14 @@
     <result column="STATE" property="state" jdbcType="INTEGER" />
   </resultMap>
   
+  <resultMap id="DeptVoMap" type="cn.itcast.jk.vo.DeptVo">
+   <id column="DEPT_ID" property="deptId" jdbcType="VARCHAR" />
+   <result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+   <result column="PARENT_ID" property="parentId" jdbcType="VARCHAR" />
+   <result column="STATE" property="state" jdbcType="INTEGER" />
+  	<result column="parentName" property="parentName" jdbcType="VARCHAR"/>
+  </resultMap>
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -107,6 +115,7 @@
     values (#{deptId,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, 
       #{state,jdbcType=INTEGER})
   </insert>
+  
   <insert id="insertSelective" parameterType="cn.itcast.jk.domain.Dept" >
     insert into dept_p
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -204,5 +213,19 @@
   
   <select id="findList" resultMap="BaseResultMap">
   	select * from dept_p limit #{pageNo},#{pageSize}
+  </select>
+  
+  <select id="findDeptVo" resultMap="DeptVoMap">
+  select a.*,b.dept_name as parentName from dept_p  a
+left join dept_p  b 
+on  a.parent_id=b.dept_id
+  limit #{pageNo},#{pageSize}
+  </select>
+  
+  <select id="findDeptVoById" resultMap="DeptVoMap" parameterType="string">
+  select a.*,b.dept_name as parentName from dept_p  a
+left join dept_p  b 
+on  a.parent_id=b.dept_id
+  where a.dept_id=#{id}
   </select>
 </mapper>

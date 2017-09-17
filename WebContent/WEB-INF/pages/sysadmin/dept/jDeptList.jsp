@@ -25,7 +25,7 @@
 	     
 	     function toView(){
 	    	 if(isOnlyChecked()){
-	    		 formSubmit('deptAction_toview','_self');
+	    		 formSubmit('deptAction_toview.action','_self');
 	    	 }else{
 	    		 alert("请先选择一项并且只能选择一项，再进行操作！");
 	    	 }
@@ -33,7 +33,7 @@
 	     //实现更新
 	     function toUpdate(){
 	    	 if(isOnlyChecked()){
-	    		 formSubmit('deptAction_toupdate','_self');
+	    		 formSubmit('deptAction_toupdate.action','_self');
 	    	 }else{
 	    		 alert("请先选择一项并且只能选择一项，再进行操作！");
 	    	 }
@@ -50,9 +50,9 @@
   <div id="navMenubar">
 <ul>
 <li id="view"><a href="#" onclick="javascript:toView()">查看</a></li>
-<li id="new"><a href="#" onclick="formSubmit('deptAction_tocreate','_self');this.blur();">新增</a></li>
+<li id="new"><a href="#" onclick="formSubmit('deptAction_tocreate.action','_self');this.blur();">新增</a></li>
 <li id="update"><a href="#" onclick="javascript:toUpdate()">修改</a></li>
-<li id="delete"><a href="#" onclick="formSubmit('deptAction_delete','_self');this.blur();">删除</a></li>
+<li id="delete"><a href="#" onclick="formSubmit('deptAction_delete.action','_self');this.blur();">删除</a></li>
 </ul>
   </div>
 </div>
@@ -90,7 +90,8 @@
 			<td><input type="checkbox" name="id" value="${dept.deptId }"/></td>
 			<td>${st.count }</td>
 			<td>${dept.deptId }</td>
-			<td></td>
+			<td>${dept.parentName}
+			</td>
 			<td><a href="deptAction_toview?id=${dept.deptId }">${dept.deptName }</a></td>
 		</tr>
 	</c:forEach>

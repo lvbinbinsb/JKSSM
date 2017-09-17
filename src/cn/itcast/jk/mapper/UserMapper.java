@@ -1,9 +1,12 @@
 package cn.itcast.jk.mapper;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import cn.itcast.jk.domain.User;
 import cn.itcast.jk.domain.UserExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
+import cn.itcast.jk.vo.UserAndInfoVo;
 
 public interface UserMapper {
     int countByExample(UserExample example);
@@ -29,4 +32,10 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
     
     User findUserByNameAndPwd(@Param("name")String name,@Param("pwd")String pwd);
+    
+    int findTotalCount();
+
+	List<User> findUser(@Param("pageNo")int pageNo, @Param("pageSize") int pageSize);
+
+	List<UserAndInfoVo> findAllUser();
 }

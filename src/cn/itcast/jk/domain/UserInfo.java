@@ -3,17 +3,19 @@ package cn.itcast.jk.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class UserInfo {
     private String userInfoId;
 
     private String name;
 
     private String managerId;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd") 
     private Date joinDate;
 
     private BigDecimal salary;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd") 
     private Date birthday;
 
     private String gender;
@@ -31,11 +33,12 @@ public class UserInfo {
     private String createBy;
 
     private String createDept;
-
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd") 
     private Date createTime;
 
     private String updateBy;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd") 
     private Date updateTime;
 
     private String email;

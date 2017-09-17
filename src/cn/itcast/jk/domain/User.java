@@ -2,25 +2,27 @@ package cn.itcast.jk.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class User {
     private String userId;
 
     private String deptId;
 
-    private String userName;
+    private String userName;  //登录名
 
     private String password;
 
-    private Integer state;
+    private Integer state;  //状态
 
     private String createBy;
 
     private String createDept;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd") 
     private Date createTime;
 
     private String updateBy;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd") 
     private Date updateTime;
 
     public String getUserId() {

@@ -13,6 +13,9 @@
     <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR" />
     <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
+  
+  
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -90,12 +93,16 @@
       order by ${orderByClause}
     </if>
   </select>
+  
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from user_p
     where USER_ID = #{userId,jdbcType=VARCHAR}
   </select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from user_p
     where USER_ID = #{userId,jdbcType=VARCHAR}
@@ -227,6 +234,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
   <update id="updateByExample" parameterType="map" >
     update user_p
     set USER_ID = #{record.userId,jdbcType=VARCHAR},
@@ -291,8 +299,25 @@
   </update>
   
   
-  <select id="findUserByNameAndPwd" resultType="cn.itcast.jk.domain.User">
+  <select id="findUserByNameAndPwd" resultMap="BaseResultMap">
   select * from user_p where USER_NAME=#{name} and PASSWORD=#{pwd}
-  
   </select>
+  
+  <select id="findTotalCount" resultType="int">
+  	select count(*) from user_p
+  </select>
+  
+  <select id="findUser" resultMap="BaseResultMap">
+  	 select * from user_p 
+  	 limit #{pageNo},#{pageSize}
+  </select>
+  
+  <select id="findAllUser" resultType="cn.itcast.jk.vo.UserAndInfoVo">
+  	select a.user_id  userId, b.name as name
+	from user_p  a
+	left join user_info_p b
+	on a.user_id=b.user_info_id 
+  </select>
+  
+  
 </mapper>
